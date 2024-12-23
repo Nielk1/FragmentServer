@@ -15,7 +15,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Character;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataRegisterCharRequest)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataRegisterCharRequest)]
 public class RegisterCharacterRequest : BaseRequest
 {
     private readonly ILogger<RegisterCharacterRequest> _logger;

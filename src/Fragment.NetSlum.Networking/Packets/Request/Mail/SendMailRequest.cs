@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Mail
 {
-    [FragmentPacket(MessageType.Data, OpCodes.DataMailSend)]
+    [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataMailSend)]
     public class SendMailRequest :BaseRequest
     {
         private readonly FragmentContext _database;

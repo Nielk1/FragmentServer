@@ -15,7 +15,7 @@ using Fragment.NetSlum.Persistence.Entities;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataGuildUpdateDetails)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataGuildUpdateDetails)]
 public class UpdateGuildDetailsRequest : BaseRequest
 {
     private readonly FragmentContext _database;

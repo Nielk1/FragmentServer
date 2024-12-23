@@ -15,7 +15,7 @@ using Fragment.NetSlum.TcpServer.Extensions;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.AreaServer;
 
-[FragmentPacket(MessageType.Data, OpCodes.Data_AreaServerDateTimeRequest)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.Data_AreaServerDateTimeRequest)]
 public class AreaServerDateTimeRequest : BaseRequest
 {
     private readonly ILogger<AreaServerIPAddressPortRequest> _logger;

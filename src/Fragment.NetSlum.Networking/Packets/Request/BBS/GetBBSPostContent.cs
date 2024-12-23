@@ -11,7 +11,7 @@ using Fragment.NetSlum.Persistence;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.BBS;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataBbsGetPostContent)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataBbsGetPostContent)]
 public class GetBBSPostContent : BaseRequest
 {
     private readonly FragmentContext _database;

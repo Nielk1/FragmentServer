@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Login;
 
-[FragmentPacket(MessageType.Data, OpCodes.AreaServerShutdownRequest)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.AreaServerShutdownRequest)]
 public class AreaServerShutdownRequest : BaseRequest
 {
     private readonly ILogger<AreaServerShutdownRequest> _logger;

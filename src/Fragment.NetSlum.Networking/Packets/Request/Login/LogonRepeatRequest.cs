@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Login;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataLogonRepeatRequest)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLogonRepeatRequest)]
 public class LogonRepeatRequest :BaseRequest
 {
     private readonly ILogger<LogonRepeatRequest> _logger;

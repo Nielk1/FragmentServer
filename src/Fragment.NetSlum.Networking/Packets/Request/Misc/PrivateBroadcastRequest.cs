@@ -11,7 +11,7 @@ using Fragment.NetSlum.Networking.Stores;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Misc;
 
-[FragmentPacket(MessageType.Data, OpCodes.PrivateBroadcast)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.PrivateBroadcast)]
 public class PrivateBroadcastRequest : BaseRequest
 {
     private readonly ChatLobbyStore _chatLobbyStore;

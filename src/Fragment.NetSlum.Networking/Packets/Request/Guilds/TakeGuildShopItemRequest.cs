@@ -12,7 +12,7 @@ using Fragment.NetSlum.Persistence;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataTakeGuildShopItem)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataTakeGuildShopItem)]
 public class TakeGuildShopItemRequest : BaseRequest
 {
     private readonly FragmentContext _database;

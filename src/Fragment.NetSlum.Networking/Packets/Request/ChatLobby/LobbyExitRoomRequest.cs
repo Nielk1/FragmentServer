@@ -11,7 +11,7 @@ using Fragment.NetSlum.Networking.Packets.Response.ChatLobby;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.ChatLobby
 {
-    [FragmentPacket(MessageType.Data, OpCodes.DataLobbyExitRoom)]
+    [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLobbyExitRoom)]
     public class LobbyExitRoomRequest :BaseRequest
     {
         private readonly ILogger<LobbyExitRoomRequest> _logger;

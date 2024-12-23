@@ -8,7 +8,7 @@ using Fragment.NetSlum.Networking.Sessions;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Character;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataSelectCharRequest)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataSelectCharRequest)]
 public class SelectCharacterRequest : BaseRequest
 {
     public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)

@@ -15,7 +15,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Articles;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataNewsGetPost)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataNewsGetPost)]
 public class GetNewsPostRequest : BaseRequest
 {
     private readonly ICommandBus _commandBus;

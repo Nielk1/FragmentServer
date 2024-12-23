@@ -8,7 +8,7 @@ using Fragment.NetSlum.Networking.Sessions;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.ChatLobby;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataLobbyGetServers)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLobbyGetServers)]
 public class GetLobbyServersRequest : BaseRequest
 {
     public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)

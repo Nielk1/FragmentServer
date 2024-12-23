@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataGuildKickPlayer)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataGuildKickPlayer)]
 public class KickPlayerFromGuildRequest : BaseRequest
 {
     private readonly FragmentContext _database;

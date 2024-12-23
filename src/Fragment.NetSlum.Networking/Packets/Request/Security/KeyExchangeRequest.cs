@@ -16,7 +16,7 @@ using Fragment.NetSlum.TcpServer.Extensions;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Security;
 
-[FragmentPacket(MessageType.KeyExchangeRequest)]
+[FragmentPacket(ServerType.Lobby, MessageType.KeyExchangeRequest)]
 public class KeyExchangeRequest : BaseRequest
 {
     private readonly CryptoHandler _cryptoHandler;

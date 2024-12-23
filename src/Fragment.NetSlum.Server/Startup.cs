@@ -1,9 +1,11 @@
+using System;
 using System.Data;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Fragment.NetSlum.Core.CommandBus;
 using Fragment.NetSlum.Core.Extensions;
+using Fragment.NetSlum.Networking.Constants;
 using Fragment.NetSlum.Networking.Extensions;
 using Fragment.NetSlum.Networking.Stores;
 using Fragment.NetSlum.Persistence;
@@ -54,13 +56,27 @@ public class Startup
             .AddEndpointsApiExplorer()
             .AddControllers();
 
+        string datbaseType = Configuration.GetSection("DatabaseProvider").Value;
         services
             .AddDbContext<FragmentContext>((provider, opt) =>
             {
-                opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+                switch (datbaseType)
+                {
+                    //case "sqlite":
+                    //    opt.UseSqlite(connectionString);
+                    //    break;
+                    case "memory":
+                        opt.UseInMemoryDatabase(Guid.NewGuid().ToString());
+                        break;
+                    case "mysql":
+                    default:
+                        opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+                        break;
+                }
                 opt.AddInterceptors(provider.GetRequiredService<EntityChangeInterceptor>());
-            })
-            .AddAutoMigrations<FragmentContext>();
+            });
+        if (datbaseType != "memory")
+            services.AddAutoMigrations<FragmentContext>();
 
         services.UseEntityListener()
             .AddListener<TimestampableEntityListener>()
@@ -89,7 +105,7 @@ public class Startup
 
         services.AddSingleton<ImageConverter>();
 
-        services.AddPacketHandling();
+        services.AddPacketHandling(ServerType.Lobby);
         services.Configure<ServerConfiguration>(Configuration.GetSection("TcpServer"));
         services.AddSingleton<ITcpServer, Servers.Server>();
         services.AddSingleton(typeof(ChatLobbyStore));

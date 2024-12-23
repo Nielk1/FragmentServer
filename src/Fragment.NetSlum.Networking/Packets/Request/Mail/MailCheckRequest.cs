@@ -11,7 +11,7 @@ using Fragment.NetSlum.Persistence;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Mail;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataMailCheckRequest)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataMailCheckRequest)]
 public class MailCheckRequest : BaseRequest
 {
     private readonly FragmentContext _database;

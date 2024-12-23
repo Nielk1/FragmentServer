@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.AreaServer;
 
-[FragmentPacket(MessageType.Data, OpCodes.Data_AreaServerUpdateStatusRequest)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.Data_AreaServerUpdateStatusRequest)]
 public class AreaServerUpdateStatusRequest :BaseRequest
 {
     private readonly ILogger<AreaServerUpdateStatusRequest> _logger;

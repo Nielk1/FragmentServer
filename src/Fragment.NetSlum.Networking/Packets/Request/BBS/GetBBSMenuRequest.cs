@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.BBS;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataBbsGetMenu)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataBbsGetMenu)]
 public class GetBBSMenuRequest : BaseRequest
 {
     private readonly FragmentContext _database;

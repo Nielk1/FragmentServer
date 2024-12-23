@@ -10,8 +10,8 @@ using Fragment.NetSlum.Networking.Sessions;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Misc;
 
-[FragmentPacket(MessageType.PingRequest)]
-[FragmentPacket(MessageType.Data, OpCodes.DataPing)]
+[FragmentPacket(ServerType.Lobby, MessageType.PingRequest)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataPing)]
 public class PingRequest : BaseRequest
 {
     public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)

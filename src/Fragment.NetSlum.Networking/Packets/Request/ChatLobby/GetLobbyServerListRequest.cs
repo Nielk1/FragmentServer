@@ -16,7 +16,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.ChatLobby;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataLobbyGetServersGetList)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLobbyGetServersGetList)]
 public partial class GetLobbyServerListRequest : BaseRequest
 {
     private readonly FragmentContext _database;

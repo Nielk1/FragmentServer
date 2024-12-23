@@ -17,7 +17,7 @@ using Fragment.NetSlum.Persistence;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.ChatLobby;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataLobbyEnterRoomRequest)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLobbyEnterRoomRequest)]
 public class ChatLobbyEnterRoomRequest : BaseRequest
 {
     private readonly ILogger<ChatLobbyEnterRoomRequest> _logger;

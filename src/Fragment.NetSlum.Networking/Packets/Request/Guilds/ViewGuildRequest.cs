@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataViewGuildRequest)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataViewGuildRequest)]
 public class ViewGuildInfoRequest : BaseRequest
 {
     private readonly FragmentContext _database;

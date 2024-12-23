@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Login;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataDiskAuthorizationRequest)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataDiskAuthorizationRequest)]
 public class DiskAuthorizationRequest : BaseRequest
 {
     private readonly ILogger<DiskAuthorizationRequest> _logger;

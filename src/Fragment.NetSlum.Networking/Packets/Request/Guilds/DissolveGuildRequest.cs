@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataDissolveGuild)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataDissolveGuild)]
 public class DissolveGuildRequest : BaseRequest
 {
     private readonly FragmentContext _database;

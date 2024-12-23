@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Ranking;
 
-[FragmentPacket(MessageType.Data, OpCodes.RankingLeaderboard)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.RankingLeaderboard)]
 public class RankingLeaderboardRequest : BaseRequest
 {
     private readonly FragmentContext _database;

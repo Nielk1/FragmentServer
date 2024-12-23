@@ -13,7 +13,7 @@ using Fragment.NetSlum.Persistence;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Saves;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataSaveIdRequest)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataSaveIdRequest)]
 public class GetAccountInfoForSaveIdRequest : BaseRequest
 {
     private readonly FragmentContext _database;

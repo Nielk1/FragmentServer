@@ -13,8 +13,8 @@ using Fragment.NetSlum.Networking.Stores;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.ChatLobby;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataLobbyChatroomProtectedCreate)]
-[FragmentPacket(MessageType.Data, OpCodes.DataLobbyChatroomOpenCreate)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLobbyChatroomProtectedCreate)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLobbyChatroomOpenCreate)]
 public class CreateLobbyChatroomRequest : BaseRequest
 {
     private readonly ChatLobbyStore _chatLobbyStore;

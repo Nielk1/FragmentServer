@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Mail;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataGetMailContent)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataGetMailContent)]
 public class GetMailContentRequest : BaseRequest
 {
     private readonly FragmentContext _database;

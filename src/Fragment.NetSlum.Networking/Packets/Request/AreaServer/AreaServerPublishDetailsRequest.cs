@@ -13,10 +13,10 @@ using Microsoft.Extensions.Logging;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.AreaServer;
 
-[FragmentPacket(MessageType.Data, OpCodes.Data_AreaServerPublishDetails1Request)]
-[FragmentPacket(MessageType.Data, OpCodes.Data_AreaServerPublishDetails2Request)]
-[FragmentPacket(MessageType.Data, OpCodes.Data_AreaServerPublishDetails3Request)]
-[FragmentPacket(MessageType.Data, OpCodes.Data_AreaServerPublishDetails4Request)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.Data_AreaServerPublishDetails1Request)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.Data_AreaServerPublishDetails2Request)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.Data_AreaServerPublishDetails3Request)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.Data_AreaServerPublishDetails4Request)]
 public class AreaServerPublishDetailsRequest:BaseRequest
 {
     private readonly FragmentContext _database;

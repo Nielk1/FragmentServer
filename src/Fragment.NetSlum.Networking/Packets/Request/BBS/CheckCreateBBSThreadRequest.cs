@@ -8,7 +8,7 @@ using Fragment.NetSlum.Networking.Sessions;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.BBS;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataBbsCheckThreadCreate)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataBbsCheckThreadCreate)]
 public class CheckCreateBBSThreadRequest : BaseRequest
 {
     public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)

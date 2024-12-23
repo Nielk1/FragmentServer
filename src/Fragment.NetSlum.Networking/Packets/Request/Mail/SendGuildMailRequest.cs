@@ -9,7 +9,7 @@ using OpCodes = Fragment.NetSlum.Networking.Constants.OpCodes;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Mail;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataGuildMailSend)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataGuildMailSend)]
 public class SendGuildMailRequest : BaseRequest
 {
     public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)

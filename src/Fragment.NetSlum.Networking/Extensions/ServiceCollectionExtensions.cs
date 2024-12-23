@@ -12,12 +12,13 @@ using System.Reflection;
 using Fragment.NetSlum.Networking.Crypto;
 using Fragment.NetSlum.Networking.Pipeline.Encoders;
 using Serilog;
+using Fragment.NetSlum.Networking.Constants;
 
 namespace Fragment.NetSlum.Networking.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static void AddPacketHandling(this IServiceCollection services)
+    public static void AddPacketHandling(this IServiceCollection services, ServerType serverType)
     {
         var asm = typeof(BaseRequest).Assembly.GetTypes()
             .Where(a => typeof(BaseRequest).IsAssignableFrom(a) && a.IsClass && !a.IsAbstract);
@@ -31,8 +32,11 @@ public static class ServiceCollectionExtensions
 
             foreach (var m in mediusMessages)
             {
-                cache.AddRequest(m, a);
-                totalPackets++;
+                if ((m.ServerType & serverType) != 0)
+                {
+                    cache.AddRequest(m, a);
+                    totalPackets++;
+                }
             }
 
             // Was transient, but switching to scoped to reduce DI and memory overhead.

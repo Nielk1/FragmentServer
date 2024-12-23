@@ -14,7 +14,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
-[FragmentPacket(MessageType.Data, OpCodes.DataGuildInvitationResponse)]
+[FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataGuildInvitationResponse)]
 public class GuildInvitationResultRequest : BaseRequest
 {
     private readonly FragmentContext _database;
