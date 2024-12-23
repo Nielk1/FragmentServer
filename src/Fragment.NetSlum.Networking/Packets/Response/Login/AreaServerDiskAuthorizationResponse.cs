@@ -3,9 +3,9 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Login;
 
-public class AreaServerDiskAuthorizationResponse : BaseResponse
+public class AreaServerDiskAuthorizationResponse : BasePacket, IBaseResponse
 {
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         return new FragmentMessage
         {

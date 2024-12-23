@@ -9,9 +9,9 @@ using Fragment.NetSlum.Networking.Sessions;
 namespace Fragment.NetSlum.Networking.Packets.Request.Misc;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataComRequest)]
-public class DataComRequest : BaseRequest
+public class DataComRequest : BasePacket, IBaseRequest
 {
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         return SingleMessage(new DataComResponse().Build());
     }

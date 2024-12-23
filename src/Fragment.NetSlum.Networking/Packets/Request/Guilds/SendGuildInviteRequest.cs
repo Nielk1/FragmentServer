@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataSendGuildInvite)]
-public class SendGuildInviteRequest : BaseRequest
+public class SendGuildInviteRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
     private readonly ChatLobbyStore _chatLobbyStore;
@@ -29,7 +29,7 @@ public class SendGuildInviteRequest : BaseRequest
         _logger = logger;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var playerToInviteIdx = BinaryPrimitives.ReadUInt16BigEndian(request.Data.Span[..2]);
 

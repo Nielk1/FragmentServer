@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.ChatLobby;
 
-public class ChatLobbyStatusUpdateResponse:BaseResponse
+public class ChatLobbyStatusUpdateResponse:BasePacket, IBaseResponse
 {
     private ushort _playerIndex;
     private Memory<byte> _lastStatus = Array.Empty<byte>();
@@ -23,7 +23,7 @@ public class ChatLobbyStatusUpdateResponse:BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var writer = new MemoryWriter(sizeof(ushort) * 2 + _lastStatus.Length);
         writer.Write(_playerIndex);

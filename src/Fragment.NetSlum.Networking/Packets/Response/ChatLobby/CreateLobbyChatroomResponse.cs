@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.ChatLobby;
 
-public class CreateLobbyChatroomResponse : BaseResponse
+public class CreateLobbyChatroomResponse : BasePacket, IBaseResponse
 {
     private readonly ushort _lobbyId;
 
@@ -14,7 +14,7 @@ public class CreateLobbyChatroomResponse : BaseResponse
         _lobbyId = lobbyId;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var buffer = new Memory<byte>(new byte[2]);
         BinaryPrimitives.WriteUInt16BigEndian(buffer.Span, _lobbyId);

@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 namespace Fragment.NetSlum.Networking.Packets.Request.ChatLobby;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLobbyEvent)]
-public class LobbyEventRequest : BaseRequest
+public class LobbyEventRequest : BasePacket, IBaseRequest
 {
     private readonly ILogger<LobbyEventRequest> _logger;
     private readonly ChatLobbyStore _chatLobbyStore;
@@ -24,7 +24,7 @@ public class LobbyEventRequest : BaseRequest
         _chatLobbyStore = chatLobbyStore;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var lobbyId = BinaryPrimitives.ReadUInt16BigEndian(request.Data[..2].Span);
 

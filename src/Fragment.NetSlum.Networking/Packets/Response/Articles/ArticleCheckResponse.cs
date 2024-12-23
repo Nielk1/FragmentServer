@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Articles;
 
-public class ArticleCheckResponse : BaseResponse
+public class ArticleCheckResponse : BasePacket, IBaseResponse
 {
     private bool _articlesAvailable;
 
@@ -16,7 +16,7 @@ public class ArticleCheckResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var buffer = new Memory<byte>(new byte[2]);
         BinaryPrimitives.WriteUInt16BigEndian(buffer.Span, (ushort)(_articlesAvailable ? 0x01 : 0x00));

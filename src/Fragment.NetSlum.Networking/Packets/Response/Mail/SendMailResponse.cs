@@ -5,7 +5,7 @@ using OpCodes = Fragment.NetSlum.Networking.Constants.OpCodes;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Mail
 {
-    public class SendMailResponse :BaseResponse
+    public class SendMailResponse :BasePacket, IBaseResponse
     {
         private OpCodes _responseCode;
 
@@ -14,7 +14,7 @@ namespace Fragment.NetSlum.Networking.Packets.Response.Mail
             _responseCode = responseCode;
             return this;
         }
-        public override FragmentMessage Build()
+        public FragmentMessage Build()
         {
             return new FragmentMessage
             {

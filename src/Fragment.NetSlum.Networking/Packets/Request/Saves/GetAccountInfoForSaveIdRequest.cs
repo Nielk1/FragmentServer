@@ -14,7 +14,7 @@ using Fragment.NetSlum.Persistence;
 namespace Fragment.NetSlum.Networking.Packets.Request.Saves;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataSaveIdRequest)]
-public class GetAccountInfoForSaveIdRequest : BaseRequest
+public class GetAccountInfoForSaveIdRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
     private readonly ICommandBus _commandBus;
@@ -25,7 +25,7 @@ public class GetAccountInfoForSaveIdRequest : BaseRequest
         _commandBus = commandBus;
     }
 
-    public override async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var saveId = request.Data.Span.ToShiftJisString();
 

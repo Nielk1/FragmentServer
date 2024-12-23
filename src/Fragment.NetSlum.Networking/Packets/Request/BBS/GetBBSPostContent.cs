@@ -12,7 +12,7 @@ using Fragment.NetSlum.Persistence;
 namespace Fragment.NetSlum.Networking.Packets.Request.BBS;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataBbsGetPostContent)]
-public class GetBBSPostContent : BaseRequest
+public class GetBBSPostContent : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -21,7 +21,7 @@ public class GetBBSPostContent : BaseRequest
         _database = database;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var postId = BinaryPrimitives.ReadUInt32BigEndian(request.Data[4..8].Span);
 

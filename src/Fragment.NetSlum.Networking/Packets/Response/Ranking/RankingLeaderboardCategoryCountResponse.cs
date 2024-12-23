@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Ranking;
 
-public class RankingLeaderboardCategoryCountResponse : BaseResponse
+public class RankingLeaderboardCategoryCountResponse : BasePacket, IBaseResponse
 {
     private readonly ushort _numEntries;
 
@@ -14,7 +14,7 @@ public class RankingLeaderboardCategoryCountResponse : BaseResponse
         _numEntries = numEntries;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var buffer = new Memory<byte>(new byte[2]);
         BinaryPrimitives.WriteUInt16BigEndian(buffer.Span, _numEntries);

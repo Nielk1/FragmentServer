@@ -12,13 +12,13 @@ namespace Fragment.NetSlum.Networking.Packets.Request.Misc;
 
 [FragmentPacket(ServerType.Lobby, MessageType.PingRequest)]
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataPing)]
-public class PingRequest : BaseRequest
+public class PingRequest : BasePacket, IBaseRequest
 {
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         session.LastContacted = DateTime.UtcNow;
 
-        BaseResponse response = new PingResponse();
+        IBaseResponse response = new PingResponse();
 
         return SingleMessage(response.Build());
 

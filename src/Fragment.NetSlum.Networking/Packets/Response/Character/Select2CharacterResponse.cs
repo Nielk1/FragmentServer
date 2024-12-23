@@ -4,9 +4,9 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Character;
 
-public class Select2CharacterResponse : BaseResponse
+public class Select2CharacterResponse : BasePacket, IBaseResponse
 {
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         return new FragmentMessage
         {

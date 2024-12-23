@@ -20,8 +20,8 @@ public static class ServiceCollectionExtensions
 {
     public static void AddPacketHandling(this IServiceCollection services, ServerType serverType)
     {
-        var asm = typeof(BaseRequest).Assembly.GetTypes()
-            .Where(a => typeof(BaseRequest).IsAssignableFrom(a) && a.IsClass && !a.IsAbstract);
+        var asm = typeof(IBaseRequest).Assembly.GetTypes()
+            .Where(a => typeof(IBaseRequest).IsAssignableFrom(a) && a.IsClass && !a.IsAbstract);
 
         var cache = new PacketCache();
 

@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataGuildKickPlayer)]
-public class KickPlayerFromGuildRequest : BaseRequest
+public class KickPlayerFromGuildRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -23,7 +23,7 @@ public class KickPlayerFromGuildRequest : BaseRequest
         _database = database;
     }
 
-    public override async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var kickedPlayerId = BinaryPrimitives.ReadInt32BigEndian(request.Data.Span[..4]);
 

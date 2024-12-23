@@ -4,7 +4,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Guilds;
 
-public class DonateCoinsToGuildResponse : BaseResponse
+public class DonateCoinsToGuildResponse : BasePacket, IBaseResponse
 {
     private ushort _goldDonated;
     private ushort _silverDonated;
@@ -17,7 +17,7 @@ public class DonateCoinsToGuildResponse : BaseResponse
         _bronzeDonated = bronze;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var writer = new MemoryWriter(sizeof(ushort) * 3);
         writer.Write(_goldDonated);

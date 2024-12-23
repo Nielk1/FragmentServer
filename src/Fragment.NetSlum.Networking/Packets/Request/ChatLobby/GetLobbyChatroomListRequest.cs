@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 namespace Fragment.NetSlum.Networking.Packets.Request.ChatLobby
 {
     [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataGetLobbyChatroomListRequest)]
-    public class GetLobbyChatroomListRequest : BaseRequest
+    public class GetLobbyChatroomListRequest : BasePacket, IBaseRequest
     {
         private readonly ILogger<GetLobbyChatroomListRequest> _logger;
         private readonly ChatLobbyStore _chatLobbyStore;
@@ -24,7 +24,7 @@ namespace Fragment.NetSlum.Networking.Packets.Request.ChatLobby
             _chatLobbyStore = chatLobbyStore;
         }
 
-        public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+        public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
         {
             // If no default lobby was found, attempt to look up by guild
             var gameLobby = _chatLobbyStore.GetLobbyBySession(session, ChatLobbyType.Default) ?? _chatLobbyStore.GetLobbyBySession(session, ChatLobbyType.Guild);

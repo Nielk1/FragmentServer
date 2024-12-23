@@ -4,7 +4,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Guilds;
 
-public class GuildShopItemEntryResponse : BaseResponse
+public class GuildShopItemEntryResponse : BasePacket, IBaseResponse
 {
     private uint _itemId;
     private ushort _quantity;
@@ -31,7 +31,7 @@ public class GuildShopItemEntryResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var writer = new MemoryWriter(sizeof(uint) * 2 + sizeof(ushort));
         writer.Write(_itemId);

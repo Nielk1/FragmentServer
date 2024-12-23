@@ -9,9 +9,9 @@ using Fragment.NetSlum.Networking.Sessions;
 namespace Fragment.NetSlum.Networking.Packets.Request.Character;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataSelect2CharRequest)]
-public class Select2CharacterRequest : BaseRequest
+public class Select2CharacterRequest : BasePacket, IBaseRequest
 {
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         return SingleMessage(new Select2CharacterResponse().Build());
     }

@@ -22,7 +22,7 @@ public class FragmentPacketHandler : IPacketHandler<FragmentMessage>
 
     public async ValueTask<ICollection<FragmentMessage>> CreateResponse<TSession>(TSession session, FragmentMessage o) where TSession : IScopeable
     {
-        BaseRequest? availableResponseObject = GetRequest(session.ServiceScope.ServiceProvider, o);
+        IBaseRequest? availableResponseObject = GetRequest(session.ServiceScope.ServiceProvider, o);
 
         if (availableResponseObject == null)
         {
@@ -32,7 +32,7 @@ public class FragmentPacketHandler : IPacketHandler<FragmentMessage>
         return await availableResponseObject.CreateResponse(session, o);
     }
 
-    private BaseRequest? GetRequest(IServiceProvider serviceProvider, FragmentMessage o)
+    private IBaseRequest? GetRequest(IServiceProvider serviceProvider, FragmentMessage o)
     {
         var pType = _packetCache.GetRequest(o);
 
@@ -43,7 +43,7 @@ public class FragmentPacketHandler : IPacketHandler<FragmentMessage>
             return null;
         }
 
-        if (serviceProvider.GetService(pType) is not BaseRequest request)
+        if (serviceProvider.GetService(pType) is not IBaseRequest request)
         {
             _logger.LogWarning(
                 "A packet containing the [FragmentPacket] annotation was found but was not registered for use. Name:  {Object}",

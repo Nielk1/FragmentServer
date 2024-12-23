@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace Fragment.NetSlum.Networking.Packets.Request.Mail
 {
     [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataMailSend)]
-    public class SendMailRequest :BaseRequest
+    public class SendMailRequest :BasePacket, IBaseRequest
     {
         private readonly FragmentContext _database;
 
@@ -25,7 +25,7 @@ namespace Fragment.NetSlum.Networking.Packets.Request.Mail
             _database = database;
         }
 
-        public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+        public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
         {
             var receiverAccountId = BinaryPrimitives.ReadUInt32BigEndian(request.Data[4..8].Span);
             var receiverName = request.Data.Span[8..24].ToShiftJisString();

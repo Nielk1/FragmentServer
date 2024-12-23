@@ -5,7 +5,7 @@ using Fragment.NetSlum.Core.Buffers;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.ChatLobby;
 
-public class LobbyEventResponse:BaseResponse
+public class LobbyEventResponse:BasePacket, IBaseResponse
 {
     private Memory<byte> _data;
     private ushort _senderIndex;
@@ -28,7 +28,7 @@ public class LobbyEventResponse:BaseResponse
     }
 
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var expectedIndex = _isSender ? (ushort)0xFFFF : _senderIndex;
         var writer = new MemoryWriter(_data.Length + sizeof(ushort));

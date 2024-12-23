@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.BBS;
 
-public class BbsThreadPostCountResponse : BaseResponse
+public class BbsThreadPostCountResponse : BasePacket, IBaseResponse
 {
     private readonly uint _numEntries;
 
@@ -14,7 +14,7 @@ public class BbsThreadPostCountResponse : BaseResponse
         _numEntries = numEntries;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var buffer = new Memory<byte>(new byte[4]);
         BinaryPrimitives.WriteUInt32BigEndian(buffer.Span, _numEntries);

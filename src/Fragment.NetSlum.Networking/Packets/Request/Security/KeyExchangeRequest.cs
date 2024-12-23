@@ -17,7 +17,7 @@ using Fragment.NetSlum.TcpServer.Extensions;
 namespace Fragment.NetSlum.Networking.Packets.Request.Security;
 
 [FragmentPacket(ServerType.Lobby, MessageType.KeyExchangeRequest)]
-public class KeyExchangeRequest : BaseRequest
+public class KeyExchangeRequest : BasePacket, IBaseRequest
 {
     private readonly CryptoHandler _cryptoHandler;
     private readonly ICommandBus _commandBus;
@@ -28,7 +28,7 @@ public class KeyExchangeRequest : BaseRequest
         _commandBus = commandBus;
     }
 
-    public override async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var isClientBanned = await _commandBus.GetResult(new IsIpAddressBannedQuery(session.Socket!.GetClientIp()));
 

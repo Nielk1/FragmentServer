@@ -11,7 +11,7 @@ using Fragment.NetSlum.Networking.Packets.Response.BBS;
 namespace Fragment.NetSlum.Networking.Packets.Request.BBS;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataBBSGetUpdatesRequestRequest)]
-public class GetBBSUpdatesRequest:BaseRequest
+public class GetBBSUpdatesRequest:BasePacket, IBaseRequest
 {
     private readonly ILogger<GetBBSUpdatesRequest> _logger;
 
@@ -20,9 +20,9 @@ public class GetBBSUpdatesRequest:BaseRequest
         _logger = logger;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
-        BaseResponse response = new GetBBSUpdatesResponse();
+        IBaseResponse response = new GetBBSUpdatesResponse();
 
         return SingleMessage(response.Build());
     }

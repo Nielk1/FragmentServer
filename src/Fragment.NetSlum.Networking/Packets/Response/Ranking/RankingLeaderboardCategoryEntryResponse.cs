@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Ranking;
 
-public class RankingLeaderboardCategoryEntryResponse : BaseResponse
+public class RankingLeaderboardCategoryEntryResponse : BasePacket, IBaseResponse
 {
     private ushort _categoryId;
     private string _categoryName = "";
@@ -24,7 +24,7 @@ public class RankingLeaderboardCategoryEntryResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var nameBytes = _categoryName.ToShiftJis();
 

@@ -12,7 +12,7 @@ using Fragment.NetSlum.Networking.Packets.Response.ChatLobby;
 namespace Fragment.NetSlum.Networking.Packets.Request.ChatLobby
 {
     [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLobbyExitRoom)]
-    public class LobbyExitRoomRequest :BaseRequest
+    public class LobbyExitRoomRequest :BasePacket, IBaseRequest
     {
         private readonly ILogger<LobbyExitRoomRequest> _logger;
         private readonly ChatLobbyStore _chatLobbyStore;
@@ -22,7 +22,7 @@ namespace Fragment.NetSlum.Networking.Packets.Request.ChatLobby
             _logger = logger;
             _chatLobbyStore = chatLobbyStore;
         }
-        public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+        public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
         {
             var chatLobby = _chatLobbyStore.GetLobbyBySession(session);
             var player = chatLobby?.GetPlayerByCharacterId(session.CharacterId);

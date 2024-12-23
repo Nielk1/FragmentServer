@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace Fragment.NetSlum.Networking.Packets.Request.Login;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLogonRepeatRequest)]
-public class LogonRepeatRequest :BaseRequest
+public class LogonRepeatRequest :BasePacket, IBaseRequest
 {
     private readonly ILogger<LogonRepeatRequest> _logger;
 
@@ -20,9 +20,9 @@ public class LogonRepeatRequest :BaseRequest
         _logger = logger;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
-        BaseResponse response = new LogonRepeatResponse();
+        IBaseResponse response = new LogonRepeatResponse();
 
         return SingleMessage(response.Build());
     }

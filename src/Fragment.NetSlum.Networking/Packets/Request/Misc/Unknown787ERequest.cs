@@ -9,9 +9,9 @@ using Fragment.NetSlum.Networking.Sessions;
 namespace Fragment.NetSlum.Networking.Packets.Request.Misc;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataUnknown787e)]
-public class Unknown787ERequest : BaseRequest
+public class Unknown787ERequest : BasePacket, IBaseRequest
 {
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         return SingleMessage(new UnknownResponse(OpCodes.DataUnknown787fResponse).Build());
     }

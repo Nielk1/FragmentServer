@@ -17,7 +17,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Fragment.NetSlum.Networking.Packets.Request.ChatLobby;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLobbyGetServersGetList)]
-public partial class GetLobbyServerListRequest : BaseRequest
+public partial class GetLobbyServerListRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -26,7 +26,7 @@ public partial class GetLobbyServerListRequest : BaseRequest
         _database = database;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var categoryId = BinaryPrimitives.ReadUInt16BigEndian(request.Data.Span[..2]);
 

@@ -1,18 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fragment.NetSlum.Server", "src\Fragment.NetSlum.Server\Fragment.NetSlum.Server.csproj", "{63D1AE8B-6213-45BF-8B93-E83B8AF99433}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fragment.NetSlum.Server", "src\Fragment.NetSlum.Server\Fragment.NetSlum.Server.csproj", "{63D1AE8B-6213-45BF-8B93-E83B8AF99433}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fragment.NetSlum.TcpServer", "src\Fragment.NetSlum.TcpServer\Fragment.NetSlum.TcpServer.csproj", "{ED05DE0B-474F-4B3B-A29A-672604956157}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fragment.NetSlum.TcpServer", "src\Fragment.NetSlum.TcpServer\Fragment.NetSlum.TcpServer.csproj", "{ED05DE0B-474F-4B3B-A29A-672604956157}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fragment.NetSlum.Core", "src\Fragment.NetSlum.Core\Fragment.NetSlum.Core.csproj", "{BF015F82-22A9-4A04-866B-5B774068B350}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fragment.NetSlum.Core", "src\Fragment.NetSlum.Core\Fragment.NetSlum.Core.csproj", "{BF015F82-22A9-4A04-866B-5B774068B350}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fragment.NetSlum.Networking", "src\Fragment.NetSlum.Networking\Fragment.NetSlum.Networking.csproj", "{7D56F13A-B259-4977-99C2-C875E01E1851}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fragment.NetSlum.Networking", "src\Fragment.NetSlum.Networking\Fragment.NetSlum.Networking.csproj", "{7D56F13A-B259-4977-99C2-C875E01E1851}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fragment.NetSlum.Networking.Test", "test\Fragment.NetSlum.Networking.Test\Fragment.NetSlum.Networking.Test.csproj", "{B0595FDB-4F80-4E38-9913-2876BE220006}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fragment.NetSlum.Networking.Test", "test\Fragment.NetSlum.Networking.Test\Fragment.NetSlum.Networking.Test.csproj", "{B0595FDB-4F80-4E38-9913-2876BE220006}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fragment.NetSlum.Persistence", "src\Fragment.NetSlum.Persistence\Fragment.NetSlum.Persistence.csproj", "{D943E01B-3DE9-4794-8FF4-E496AF847387}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fragment.NetSlum.Persistence", "src\Fragment.NetSlum.Persistence\Fragment.NetSlum.Persistence.csproj", "{D943E01B-3DE9-4794-8FF4-E496AF847387}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fragment.NetSlum.Console", "src\Fragment.NetSlum.Console\Fragment.NetSlum.Console.csproj", "{8150B2F0-4630-49ED-A219-F4A263DD83EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fragment.NetSlum.Console", "src\Fragment.NetSlum.Console\Fragment.NetSlum.Console.csproj", "{8150B2F0-4630-49ED-A219-F4A263DD83EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fragment.NetSlum.AreaServer", "src\Fragment.NetSlum.AreaServer\Fragment.NetSlum.AreaServer.csproj", "{95072D90-BF53-4130-8EE4-F32ED9416D6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,5 +53,15 @@ Global
 		{8150B2F0-4630-49ED-A219-F4A263DD83EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8150B2F0-4630-49ED-A219-F4A263DD83EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8150B2F0-4630-49ED-A219-F4A263DD83EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95072D90-BF53-4130-8EE4-F32ED9416D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95072D90-BF53-4130-8EE4-F32ED9416D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95072D90-BF53-4130-8EE4-F32ED9416D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95072D90-BF53-4130-8EE4-F32ED9416D6E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6882C964-A20E-409E-828E-5EDB200DA1AF}
 	EndGlobalSection
 EndGlobal

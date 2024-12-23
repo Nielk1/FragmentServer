@@ -15,7 +15,7 @@ namespace Fragment.NetSlum.Networking.Packets.Request.ChatLobby;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLobbyChatroomProtectedCreate)]
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLobbyChatroomOpenCreate)]
-public class CreateLobbyChatroomRequest : BaseRequest
+public class CreateLobbyChatroomRequest : BasePacket, IBaseRequest
 {
     private readonly ChatLobbyStore _chatLobbyStore;
 
@@ -24,7 +24,7 @@ public class CreateLobbyChatroomRequest : BaseRequest
         _chatLobbyStore = chatLobbyStore;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var reader = new SpanReader(request.Data.Span);
 

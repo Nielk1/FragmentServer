@@ -5,7 +5,7 @@ using System.Buffers.Binary;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.ChatLobby;
 
-public class ChatLobbyCountResponse:BaseResponse
+public class ChatLobbyCountResponse:BasePacket, IBaseResponse
 {
     private ushort _chatLobbyCount;
     public ChatLobbyCountResponse SetChatLobbyCount(ushort count)
@@ -16,7 +16,7 @@ public class ChatLobbyCountResponse:BaseResponse
     }
 
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var buffer = new Memory<byte>(new byte[2]);
         var bufferSpan = buffer.Span;

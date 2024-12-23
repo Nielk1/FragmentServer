@@ -4,9 +4,9 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Articles;
 
-public class GetNewsPostErrorResponse : BaseResponse
+public class GetNewsPostErrorResponse : BasePacket, IBaseResponse
 {
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         return new FragmentMessage
         {

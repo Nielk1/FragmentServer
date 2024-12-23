@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Ranking;
 
-public class RankingLeaderboardPlayerEntryResponse : BaseResponse
+public class RankingLeaderboardPlayerEntryResponse : BasePacket, IBaseResponse
 {
     private uint _playerId;
     private string _playerName = "";
@@ -24,7 +24,7 @@ public class RankingLeaderboardPlayerEntryResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var nameBytes = _playerName.ToShiftJis();
 

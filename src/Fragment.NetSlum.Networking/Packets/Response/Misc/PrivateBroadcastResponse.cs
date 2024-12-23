@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Misc;
 
-public class PrivateBroadcastResponse : BaseResponse
+public class PrivateBroadcastResponse : BasePacket, IBaseResponse
 {
     private ushort _lobbyId { get; set; }
     private ushort _senderIndex { get; set; }
@@ -40,7 +40,7 @@ public class PrivateBroadcastResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var writer = new MemoryWriter(_data.Length + sizeof(ushort) * 2);
 

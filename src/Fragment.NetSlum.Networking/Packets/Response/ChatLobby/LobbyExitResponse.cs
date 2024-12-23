@@ -4,9 +4,9 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.ChatLobby
 {
-    public class LobbyExitResponse:BaseResponse
+    public class LobbyExitResponse:BasePacket, IBaseResponse
     {
-        public override FragmentMessage Build()
+        public FragmentMessage Build()
         {
             return new FragmentMessage
             {

@@ -12,7 +12,7 @@ using Fragment.NetSlum.Persistence;
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataGetGuildShopItems)]
-public class GetGuildShopItemsRequest : BaseRequest
+public class GetGuildShopItemsRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -21,7 +21,7 @@ public class GetGuildShopItemsRequest : BaseRequest
         _database = database;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         //TODO: The GetShoppableGuildListRequest packet sets the shop ID to the guild's ID right now. This will need to be updated,
         //if we ever implement separate guild shops

@@ -6,7 +6,7 @@ using Fragment.NetSlum.Core.Extensions;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.ChatLobby;
 
-public class ChatLobbyEntryResponse : BaseResponse
+public class ChatLobbyEntryResponse : BasePacket, IBaseResponse
 {
     private ushort _chatLobbyId { get; set; }
     private string _chatLobbyName { get; set; } = "";
@@ -29,7 +29,7 @@ public class ChatLobbyEntryResponse : BaseResponse
     }
 
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var channelName = _chatLobbyName.ToShiftJis();
         int pos = 0;

@@ -4,7 +4,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Guilds;
 
-public class GuildInvitationResultConfirmationResponse : BaseResponse
+public class GuildInvitationResultConfirmationResponse : BasePacket, IBaseResponse
 {
     private readonly ushort _responseCode;
 
@@ -12,7 +12,7 @@ public class GuildInvitationResultConfirmationResponse : BaseResponse
     {
         _responseCode = responseCode;
     }
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var writer = new MemoryWriter(sizeof(ushort));
         writer.Write(_responseCode);

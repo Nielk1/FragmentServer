@@ -12,7 +12,7 @@ using Fragment.NetSlum.Networking.Stores;
 namespace Fragment.NetSlum.Networking.Packets.Request.Misc;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.PrivateBroadcast)]
-public class PrivateBroadcastRequest : BaseRequest
+public class PrivateBroadcastRequest : BasePacket, IBaseRequest
 {
     private readonly ChatLobbyStore _chatLobbyStore;
 
@@ -21,7 +21,7 @@ public class PrivateBroadcastRequest : BaseRequest
         _chatLobbyStore = chatLobbyStore;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var lobbyId = BinaryPrimitives.ReadUInt16BigEndian(request.Data.Span[..2]);
         var destinationPlayerIndex = BinaryPrimitives.ReadUInt16BigEndian(request.Data.Span[2..4]);

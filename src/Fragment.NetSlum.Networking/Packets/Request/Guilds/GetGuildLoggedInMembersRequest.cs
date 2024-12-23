@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataGuildLoggedInMembers)]
-public class GetGuildLoggedInMembersRequest : BaseRequest
+public class GetGuildLoggedInMembersRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -23,7 +23,7 @@ public class GetGuildLoggedInMembersRequest : BaseRequest
         _database = database;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         ushort guildId = BinaryPrimitives.ReadUInt16BigEndian(request.Data.Span[..2]);
 

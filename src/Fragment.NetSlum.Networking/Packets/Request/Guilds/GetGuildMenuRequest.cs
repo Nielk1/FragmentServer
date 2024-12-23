@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataGuildGetMenu)]
-public class GetGuildMenuRequest : BaseRequest
+public class GetGuildMenuRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -22,7 +22,7 @@ public class GetGuildMenuRequest : BaseRequest
         _database = database;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         ushort menuId = BinaryPrimitives.ReadUInt16BigEndian(request.Data.Span[..2]);
 

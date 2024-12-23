@@ -6,7 +6,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.BBS;
 
-public class BbsThreadEntryResponse : BaseResponse
+public class BbsThreadEntryResponse : BasePacket, IBaseResponse
 {
     private int _threadId;
     private string _threadTitle = "";
@@ -25,7 +25,7 @@ public class BbsThreadEntryResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var titleBytes = _threadTitle.ToShiftJis();
 

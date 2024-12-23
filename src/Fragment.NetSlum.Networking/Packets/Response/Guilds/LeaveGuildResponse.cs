@@ -4,9 +4,9 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Guilds;
 
-public class LeaveGuildResponse : BaseResponse
+public class LeaveGuildResponse : BasePacket, IBaseResponse
 {
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         return new FragmentMessage
         {

@@ -6,7 +6,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Mail;
 
-public class MailEntryResponse : BaseResponse
+public class MailEntryResponse : BasePacket, IBaseResponse
 {
     private uint _mailId;
     private uint _recipientAccountId;
@@ -65,7 +65,7 @@ public class MailEntryResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var recipientNameBytes = _recipientName.ToShiftJis(false).EnsureSize(18);
         var senderNameBytes = _senderName.ToShiftJis(false).EnsureSize(18);

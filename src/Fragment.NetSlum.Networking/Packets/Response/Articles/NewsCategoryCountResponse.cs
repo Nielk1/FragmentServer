@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Articles;
 
-public class NewsCategoryCountResponse : BaseResponse
+public class NewsCategoryCountResponse : BasePacket, IBaseResponse
 {
     private readonly ushort _count;
 
@@ -14,7 +14,7 @@ public class NewsCategoryCountResponse : BaseResponse
         _count = count;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var buffer = new Memory<byte>(new byte[2]);
         BinaryPrimitives.WriteUInt16BigEndian(buffer.Span, _count);

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace Fragment.NetSlum.Networking.Packets.Request.Login;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.Data_AreaServerDiskAuthorizationRequest)]
-public class AreaServerDiskAuthorizationRequset : BaseRequest
+public class AreaServerDiskAuthorizationRequset : BasePacket, IBaseRequest
 {
     private readonly ILogger<AreaServerDiskAuthorizationRequset> _logger;
 
@@ -20,9 +20,9 @@ public class AreaServerDiskAuthorizationRequset : BaseRequest
         _logger = logger;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
-        BaseResponse response = new AreaServerDiskAuthorizationResponse();
+        IBaseResponse response = new AreaServerDiskAuthorizationResponse();
         return SingleMessage(response.Build());
     }
 }

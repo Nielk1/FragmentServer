@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Fragment.NetSlum.Networking.Packets.Request.Mail;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataGetMailContent)]
-public class GetMailContentRequest : BaseRequest
+public class GetMailContentRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -22,7 +22,7 @@ public class GetMailContentRequest : BaseRequest
         _database = database;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var accountId = BinaryPrimitives.ReadUInt32BigEndian(request.Data[..4].Span);
         var mailId = BinaryPrimitives.ReadUInt32BigEndian(request.Data[4..8].Span);

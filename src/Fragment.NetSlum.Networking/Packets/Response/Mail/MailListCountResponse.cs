@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Mail;
 
-public class MailListCountResponse : BaseResponse
+public class MailListCountResponse : BasePacket, IBaseResponse
 {
     private readonly uint _numMailEntries;
 
@@ -14,7 +14,7 @@ public class MailListCountResponse : BaseResponse
         _numMailEntries = numMailEntries;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var buffer = new Memory<byte>(new byte[4]);
         BinaryPrimitives.WriteUInt32BigEndian(buffer.Span, _numMailEntries);

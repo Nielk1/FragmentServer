@@ -16,7 +16,7 @@ using Fragment.NetSlum.TcpServer.Extensions;
 namespace Fragment.NetSlum.Networking.Packets.Request.AreaServer;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.Data_AreaServerDateTimeRequest)]
-public class AreaServerDateTimeRequest : BaseRequest
+public class AreaServerDateTimeRequest : BasePacket, IBaseRequest
 {
     private readonly ILogger<AreaServerIPAddressPortRequest> _logger;
 
@@ -25,9 +25,9 @@ public class AreaServerDateTimeRequest : BaseRequest
         _logger = logger;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
-        BaseResponse response = new AreaServerDateTimeResponse();
+        IBaseResponse response = new AreaServerDateTimeResponse();
         return SingleMessage(response.Build());
     }
 }

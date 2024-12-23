@@ -9,9 +9,9 @@ using Fragment.NetSlum.Networking.Sessions;
 namespace Fragment.NetSlum.Networking.Packets.Request.ChatLobby;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLobbyGetServers)]
-public class GetLobbyServersRequest : BaseRequest
+public class GetLobbyServersRequest : BasePacket, IBaseRequest
 {
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         return SingleMessage(new LobbyGetServersResponse().Build());
     }

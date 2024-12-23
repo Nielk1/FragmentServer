@@ -4,7 +4,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Articles;
 
-public class NewsPostImageDetailsResponse : BaseResponse
+public class NewsPostImageDetailsResponse : BasePacket, IBaseResponse
 {
     private readonly Memory<byte> _colorData;
     private readonly Memory<byte> _imageData;
@@ -15,7 +15,7 @@ public class NewsPostImageDetailsResponse : BaseResponse
         _imageData = imageData;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         //var buffer = new Memory<byte>(new byte[sizeof(uint) + _imageData.Length + _colorData.Length]);
         //var bufferSpan = buffer.Span;

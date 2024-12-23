@@ -12,7 +12,7 @@ using Fragment.NetSlum.Persistence;
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataDonateCoinsToGuild)]
-public class DonateCoinsToGuildRequest : BaseRequest
+public class DonateCoinsToGuildRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -21,7 +21,7 @@ public class DonateCoinsToGuildRequest : BaseRequest
         _database = database;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var reader = new SpanReader(request.Data.Span);
 

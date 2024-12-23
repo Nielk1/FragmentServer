@@ -6,7 +6,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Security;
 
-public class KeyExchangeResponse : BaseResponse
+public class KeyExchangeResponse : BasePacket, IBaseResponse
 {
     private readonly Memory<byte> _clientKey = new byte[16];
     private readonly Memory<byte> _serverKey = new byte[16];
@@ -25,7 +25,7 @@ public class KeyExchangeResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         using var buffer = new MemoryStream();
 

@@ -14,7 +14,7 @@ using Fragment.NetSlum.Persistence.Entities;
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataGuildCreate)]
-public class CreateGuildRequest : BaseRequest
+public class CreateGuildRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -23,7 +23,7 @@ public class CreateGuildRequest : BaseRequest
         _database = database;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var reader = new SpanReader(request.Data.Span);
 

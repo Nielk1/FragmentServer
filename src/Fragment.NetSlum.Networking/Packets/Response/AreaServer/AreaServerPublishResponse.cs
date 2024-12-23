@@ -3,9 +3,9 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.AreaServer;
 
-public class AreaServerPublishResponse :BaseResponse
+public class AreaServerPublishResponse :BasePacket, IBaseResponse
 {
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         return new FragmentMessage
         {

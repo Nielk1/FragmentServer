@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.ChatLobby;
 
-public class LobbyServerCategoryEntryResponse : BaseResponse
+public class LobbyServerCategoryEntryResponse : BasePacket, IBaseResponse
 {
     private ushort _id;
     private string _name = "";
@@ -24,7 +24,7 @@ public class LobbyServerCategoryEntryResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
 
         var nameBytes = _name.ToShiftJis();

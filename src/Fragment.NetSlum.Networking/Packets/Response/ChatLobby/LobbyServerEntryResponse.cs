@@ -7,7 +7,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.ChatLobby;
 
-public class LobbyServerEntryResponse : BaseResponse
+public class LobbyServerEntryResponse : BasePacket, IBaseResponse
 {
     private ushort _serverId;
     private IPEndPoint _serverIp = null!;
@@ -66,7 +66,7 @@ public class LobbyServerEntryResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var nameBytes = _serverName.ToShiftJis();
 

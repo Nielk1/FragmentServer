@@ -6,7 +6,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Character;
 
-public class RegisterCharacterResponse : BaseResponse
+public class RegisterCharacterResponse : BasePacket, IBaseResponse
 {
     private GuildStatus _guildStatus = GuildStatus.None;
     private ushort _guildId;
@@ -25,7 +25,7 @@ public class RegisterCharacterResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var buffer = new Memory<byte>(new byte[3]);
         var bufferSpan = buffer.Span;

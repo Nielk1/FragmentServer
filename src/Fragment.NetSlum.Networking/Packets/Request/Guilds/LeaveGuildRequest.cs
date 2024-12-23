@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLeaveGuild)]
-public class LeaveGuildRequest : BaseRequest
+public class LeaveGuildRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -23,7 +23,7 @@ public class LeaveGuildRequest : BaseRequest
         _database = database;
     }
 
-    public override async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var myCharacter = _database.Characters
             .Include(c => c.Guild)

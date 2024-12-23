@@ -9,7 +9,7 @@ using Fragment.NetSlum.Networking.Sessions;
 namespace Fragment.NetSlum.Networking.Packets.Request.Security;
 
 [FragmentPacket(ServerType.Lobby, MessageType.KeyExchangeAcknowledgmentRequest)]
-public class KeyExchangeAcknowledgementRequest : BaseRequest
+public class KeyExchangeAcknowledgementRequest : BasePacket, IBaseRequest
 {
     private readonly CryptoHandler _cryptoHandler;
 
@@ -18,7 +18,7 @@ public class KeyExchangeAcknowledgementRequest : BaseRequest
         _cryptoHandler = cryptoHandler;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         _cryptoHandler.ClientCipher.Initialize();
         _cryptoHandler.ServerCipher.Initialize();

@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Guilds;
 
-public class GuildMenuCategoryCountResponse : BaseResponse
+public class GuildMenuCategoryCountResponse : BasePacket, IBaseResponse
 {
     private readonly ushort _numCategories;
 
@@ -14,7 +14,7 @@ public class GuildMenuCategoryCountResponse : BaseResponse
         _numCategories = numCategories;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var buffer = new Memory<byte>(new byte[2]);
         BinaryPrimitives.WriteUInt16BigEndian(buffer.Span, _numCategories);

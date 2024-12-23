@@ -4,7 +4,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Misc;
 
-public class UnknownResponse : BaseResponse
+public class UnknownResponse : BasePacket, IBaseResponse
 {
     private readonly OpCodes _packetType;
     private Memory<byte> _data = new Memory<byte>(new byte[2]);
@@ -21,7 +21,7 @@ public class UnknownResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         return new FragmentMessage
         {

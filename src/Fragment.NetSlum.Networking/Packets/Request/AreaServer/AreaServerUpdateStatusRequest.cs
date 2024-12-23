@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Fragment.NetSlum.Networking.Packets.Request.AreaServer;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.Data_AreaServerUpdateStatusRequest)]
-public class AreaServerUpdateStatusRequest :BaseRequest
+public class AreaServerUpdateStatusRequest :BasePacket, IBaseRequest
 {
     private readonly ILogger<AreaServerUpdateStatusRequest> _logger;
 
@@ -20,7 +20,7 @@ public class AreaServerUpdateStatusRequest :BaseRequest
         _logger = logger;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         //byte[] diskId = request.Data[0..64].ToArray();
         var pos = 0x43;

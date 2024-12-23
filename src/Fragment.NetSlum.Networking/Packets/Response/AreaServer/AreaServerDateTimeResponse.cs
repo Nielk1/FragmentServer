@@ -6,9 +6,9 @@ using System;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.AreaServer;
 
-public class AreaServerDateTimeResponse : BaseResponse
+public class AreaServerDateTimeResponse : BasePacket, IBaseResponse
 {
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var writer = new MemoryWriter(8);
         writer.Write((uint)0);

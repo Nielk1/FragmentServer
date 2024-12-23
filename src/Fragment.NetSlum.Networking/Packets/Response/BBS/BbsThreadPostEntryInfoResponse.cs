@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Constants;
 using Fragment.NetSlum.Networking.Objects;
 namespace Fragment.NetSlum.Networking.Packets.Response.BBS;
 
-public class BbsThreadPostDetailResponse : BaseResponse
+public class BbsThreadPostDetailResponse : BasePacket, IBaseResponse
 {
     private uint _threadId;
     private uint _postId;
@@ -48,7 +48,7 @@ public class BbsThreadPostDetailResponse : BaseResponse
 
         return this;
     }
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         uint unk2 = 0;
         var unk3 = new Span<byte>(new byte[46]);

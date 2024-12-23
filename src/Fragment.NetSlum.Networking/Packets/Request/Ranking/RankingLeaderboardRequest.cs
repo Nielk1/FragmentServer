@@ -17,7 +17,7 @@ using Microsoft.Extensions.Logging;
 namespace Fragment.NetSlum.Networking.Packets.Request.Ranking;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.RankingLeaderboard)]
-public class RankingLeaderboardRequest : BaseRequest
+public class RankingLeaderboardRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
     private readonly ILogger<RankingLeaderboardRequest> _logger;
@@ -28,7 +28,7 @@ public class RankingLeaderboardRequest : BaseRequest
         _logger = logger;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var categoryId = BinaryPrimitives.ReadUInt16BigEndian(request.Data.Span[..2]);
 

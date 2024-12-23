@@ -13,7 +13,7 @@ using Fragment.NetSlum.Persistence;
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataTakeGuildShopItem)]
-public class TakeGuildShopItemRequest : BaseRequest
+public class TakeGuildShopItemRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -22,7 +22,7 @@ public class TakeGuildShopItemRequest : BaseRequest
         _database = database;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var reader = new SpanReader(request.Data.Span);
         var guildId = reader.ReadUInt16();

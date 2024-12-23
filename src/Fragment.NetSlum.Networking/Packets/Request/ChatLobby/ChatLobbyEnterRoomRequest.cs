@@ -18,7 +18,7 @@ using Fragment.NetSlum.Persistence;
 namespace Fragment.NetSlum.Networking.Packets.Request.ChatLobby;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataLobbyEnterRoomRequest)]
-public class ChatLobbyEnterRoomRequest : BaseRequest
+public class ChatLobbyEnterRoomRequest : BasePacket, IBaseRequest
 {
     private readonly ILogger<ChatLobbyEnterRoomRequest> _logger;
     private readonly ChatLobbyStore _chatLobbyStore;
@@ -31,7 +31,7 @@ public class ChatLobbyEnterRoomRequest : BaseRequest
         _database = database;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         ushort chatLobbyId = BinaryPrimitives.ReadUInt16BigEndian(request.Data.Span[..2]);
         ChatLobbyType chatType = (ChatLobbyType)BinaryPrimitives.ReadUInt16BigEndian(request.Data.Span[2..4]);

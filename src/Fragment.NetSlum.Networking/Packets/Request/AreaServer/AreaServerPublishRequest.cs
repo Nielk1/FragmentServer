@@ -11,7 +11,7 @@ using Fragment.NetSlum.Networking.Packets.Response.AreaServer;
 namespace Fragment.NetSlum.Networking.Packets.Request.AreaServer;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.Data_AreaServerPublishRequest)]
-public class AreaServerPublishRequest :BaseRequest
+public class AreaServerPublishRequest :BasePacket, IBaseRequest
 {
     private readonly ILogger<AreaServerPublishRequest> _logger;
 
@@ -20,9 +20,9 @@ public class AreaServerPublishRequest :BaseRequest
         _logger = logger;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
-        BaseResponse response = new AreaServerPublishResponse();
+        IBaseResponse response = new AreaServerPublishResponse();
         return SingleMessage(response.Build());
     }
 }

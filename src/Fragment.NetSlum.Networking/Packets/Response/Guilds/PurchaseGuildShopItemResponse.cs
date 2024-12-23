@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Guilds;
 
-public class PurchaseGuildShopItemResponse : BaseResponse
+public class PurchaseGuildShopItemResponse : BasePacket, IBaseResponse
 {
     private readonly ushort _quantityPurchased;
 
@@ -14,7 +14,7 @@ public class PurchaseGuildShopItemResponse : BaseResponse
         _quantityPurchased = quantityPurchased;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var buffer = new Memory<byte>(new byte[2]);
         BinaryPrimitives.WriteUInt16BigEndian(buffer.Span, _quantityPurchased);

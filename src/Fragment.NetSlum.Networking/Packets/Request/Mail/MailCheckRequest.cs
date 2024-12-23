@@ -12,7 +12,7 @@ using Fragment.NetSlum.Persistence;
 namespace Fragment.NetSlum.Networking.Packets.Request.Mail;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataMailCheckRequest)]
-public class MailCheckRequest : BaseRequest
+public class MailCheckRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -21,7 +21,7 @@ public class MailCheckRequest : BaseRequest
         _database = database;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var accountId = BinaryPrimitives.ReadInt32BigEndian(request.Data.Span[..4]);
 

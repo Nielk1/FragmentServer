@@ -6,7 +6,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Articles;
 
-public class NewsArticleListResponse : BaseResponse
+public class NewsArticleListResponse : BasePacket, IBaseResponse
 {
     //TODO: Add model for new articles
     private ICollection<object> _articles = new List<object>();
@@ -25,7 +25,7 @@ public class NewsArticleListResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         ushort articleCount = (ushort)_articles.Count;
 

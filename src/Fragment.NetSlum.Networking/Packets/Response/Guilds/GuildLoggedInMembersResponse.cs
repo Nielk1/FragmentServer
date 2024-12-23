@@ -7,7 +7,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Guilds;
 
-public class GuildLoggedInMembersResponse : BaseResponse
+public class GuildLoggedInMembersResponse : BasePacket, IBaseResponse
 {
     private string _guildName = "";
     private string _guildDescription = "";
@@ -174,7 +174,7 @@ public class GuildLoggedInMembersResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var nameBytes = _guildName.ToShiftJis();
         var descriptionBytes = _guildDescription.ToShiftJis();

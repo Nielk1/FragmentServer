@@ -4,7 +4,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.ChatLobby;
 
-public class LobbyChatroomCategoryCountResponse : BaseResponse
+public class LobbyChatroomCategoryCountResponse : BasePacket, IBaseResponse
 {
     private readonly ushort _numLobbies;
 
@@ -13,7 +13,7 @@ public class LobbyChatroomCategoryCountResponse : BaseResponse
         _numLobbies = numLobbies;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var writer = new MemoryWriter(sizeof(ushort)*6);
         writer.Write((ushort)1);

@@ -6,7 +6,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.BBS;
 
-public class BbsCategoryEntryResponse : BaseResponse
+public class BbsCategoryEntryResponse : BasePacket, IBaseResponse
 {
     private ushort _categoryId;
     private string _categoryTitle = "";
@@ -25,7 +25,7 @@ public class BbsCategoryEntryResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var titleBytes = _categoryTitle.ToShiftJis();
 

@@ -14,7 +14,7 @@ using Fragment.NetSlum.Persistence.Entities;
 namespace Fragment.NetSlum.Networking.Packets.Request.Articles;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataNewsGetMenuRequest)]
-public class GetNewsArticlesRequest : BaseRequest
+public class GetNewsArticlesRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -23,7 +23,7 @@ public class GetNewsArticlesRequest : BaseRequest
         _database = database;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var categoryId = BinaryPrimitives.ReadUInt16BigEndian(request.Data.Span[..2]);
 

@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Mail;
 
-public class MailCheckResponse : BaseResponse
+public class MailCheckResponse : BasePacket, IBaseResponse
 {
     private uint _unreadMailCount;
 
@@ -17,7 +17,7 @@ public class MailCheckResponse : BaseResponse
     }
 
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         //var hasMail = _hasMail ? 0x100 : 0x00;
 

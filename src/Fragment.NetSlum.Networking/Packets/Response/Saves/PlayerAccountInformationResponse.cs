@@ -6,7 +6,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Saves;
 
-public class PlayerAccountInformationResponse : BaseResponse
+public class PlayerAccountInformationResponse : BasePacket, IBaseResponse
 {
     private int _accountId;
     private string _motd = "";
@@ -25,7 +25,7 @@ public class PlayerAccountInformationResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var motd = _motd.ToShiftJis();
 

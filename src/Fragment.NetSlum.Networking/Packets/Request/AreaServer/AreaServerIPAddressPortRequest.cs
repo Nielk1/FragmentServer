@@ -16,7 +16,7 @@ using Fragment.NetSlum.TcpServer.Extensions;
 namespace Fragment.NetSlum.Networking.Packets.Request.AreaServer;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.Data_AreaServerIpPortRequest)]
-public class AreaServerIPAddressPortRequest : BaseRequest
+public class AreaServerIPAddressPortRequest : BasePacket, IBaseRequest
 {
     private readonly ILogger<AreaServerIPAddressPortRequest> _logger;
 
@@ -25,7 +25,7 @@ public class AreaServerIPAddressPortRequest : BaseRequest
         _logger = logger;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var ipAddressBytes = new Span<byte>(new byte[4]);
         request.Data.Span[..4].CopyTo(ipAddressBytes);
@@ -45,7 +45,7 @@ public class AreaServerIPAddressPortRequest : BaseRequest
         session.AreaServerInfo!.PublicConnectionEndpoint = new IPEndPoint(
             asIpAddress, BinaryPrimitives.ReadUInt16BigEndian(request.Data[4..6].Span));
 
-        BaseResponse response = new AreaServerIPAddressPortResponse();
+        IBaseResponse response = new AreaServerIPAddressPortResponse();
         return SingleMessage(response.Build());
     }
 }

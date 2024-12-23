@@ -16,7 +16,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Fragment.NetSlum.Networking.Packets.Request.Articles;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataNewsGetPost)]
-public class GetNewsPostRequest : BaseRequest
+public class GetNewsPostRequest : BasePacket, IBaseRequest
 {
     private readonly ICommandBus _commandBus;
     private readonly FragmentContext _database;
@@ -27,7 +27,7 @@ public class GetNewsPostRequest : BaseRequest
         _database = database;
     }
 
-    public override async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var articleId = BinaryPrimitives.ReadUInt16BigEndian(request.Data.Span[..2]);
 

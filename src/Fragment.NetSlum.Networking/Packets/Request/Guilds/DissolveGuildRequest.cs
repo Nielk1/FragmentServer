@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataDissolveGuild)]
-public class DissolveGuildRequest : BaseRequest
+public class DissolveGuildRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -21,7 +21,7 @@ public class DissolveGuildRequest : BaseRequest
         _database = database;
     }
 
-    public override async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         await _database.Guilds
             .Where(g => g.LeaderId == session.CharacterId)

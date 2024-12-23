@@ -4,9 +4,9 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.BBS;
 
-public class CreateBBSPostResponse : BaseResponse
+public class CreateBBSPostResponse : BasePacket, IBaseResponse
 {
-    public override FragmentMessage Build() => new FragmentMessage
+    public FragmentMessage Build() => new FragmentMessage
     {
         MessageType = MessageType.Data,
         DataPacketType = OpCodes.DataBbsCreatePostResponse,

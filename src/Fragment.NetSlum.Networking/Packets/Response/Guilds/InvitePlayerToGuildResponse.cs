@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Guilds;
 
-public class InvitePlayerToGuildResponse : BaseResponse
+public class InvitePlayerToGuildResponse : BasePacket, IBaseResponse
 {
     private readonly ushort _playerIndex;
 
@@ -14,7 +14,7 @@ public class InvitePlayerToGuildResponse : BaseResponse
         _playerIndex = playerIndex;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var buffer = new Memory<byte>(new byte[2]);
         BinaryPrimitives.WriteUInt16BigEndian(buffer.Span[..2], _playerIndex);

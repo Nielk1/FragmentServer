@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Articles;
 
-public class NewsPostImageSizeResponse : BaseResponse
+public class NewsPostImageSizeResponse : BasePacket, IBaseResponse
 {
     private readonly uint _imageSize;
     private readonly ushort _chunkSize;
@@ -16,7 +16,7 @@ public class NewsPostImageSizeResponse : BaseResponse
         _chunkSize = chunkSize;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var buffer = new Memory<byte>(new byte[sizeof(uint) + sizeof(ushort)]);
         var bufferSpan = buffer.Span;

@@ -6,7 +6,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Mail;
 
-public class MailContentResponse : BaseResponse
+public class MailContentResponse : BasePacket, IBaseResponse
 {
     private string _content = "";
     private string _avatarDescriptor = "";
@@ -25,7 +25,7 @@ public class MailContentResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var contentBytes = _content.ToShiftJis(false).EnsureSize(1200);
         var avatarBytes = _avatarDescriptor.ToShiftJis(false).EnsureSize(130);

@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.ChatLobby;
 
-public class LobbyServerEntryCountResponse : BaseResponse
+public class LobbyServerEntryCountResponse : BasePacket, IBaseResponse
 {
     private readonly ushort _serverCount;
 
@@ -14,7 +14,7 @@ public class LobbyServerEntryCountResponse : BaseResponse
         _serverCount = serverCount;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var buffer = new Memory<byte>(new byte[2]);
         BinaryPrimitives.WriteUInt16BigEndian(buffer.Span, _serverCount);

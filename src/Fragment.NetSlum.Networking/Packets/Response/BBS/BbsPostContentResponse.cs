@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.BBS;
 
-public class BbsPostContentResponse : BaseResponse
+public class BbsPostContentResponse : BasePacket, IBaseResponse
 {
     private int _postId;
     private string _postContent = null!;
@@ -24,7 +24,7 @@ public class BbsPostContentResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var contentBytes = _postContent.ToShiftJis();
 

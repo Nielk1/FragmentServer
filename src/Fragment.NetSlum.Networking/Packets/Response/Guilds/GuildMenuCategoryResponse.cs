@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Guilds;
 
-public class GuildMenuCategoryResponse : BaseResponse
+public class GuildMenuCategoryResponse : BasePacket, IBaseResponse
 {
     private ushort _categoryId;
     private string _categoryName = null!;
@@ -25,7 +25,7 @@ public class GuildMenuCategoryResponse : BaseResponse
     }
 
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var nameBytes = _categoryName.ToShiftJis();
 

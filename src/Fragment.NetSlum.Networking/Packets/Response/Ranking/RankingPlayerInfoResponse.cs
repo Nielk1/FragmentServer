@@ -6,7 +6,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Ranking;
 
-public class RankingPlayerInfoResponse : BaseResponse
+public class RankingPlayerInfoResponse : BasePacket, IBaseResponse
 {
     private ushort _characterLevel;
 
@@ -77,7 +77,7 @@ public class RankingPlayerInfoResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var nameBytes = _memberName.ToShiftJis();
         var greetingBytes = _memberGreeting.ToShiftJis();

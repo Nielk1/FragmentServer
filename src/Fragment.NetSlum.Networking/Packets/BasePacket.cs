@@ -1,17 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Fragment.NetSlum.Networking.Constants;
 using Fragment.NetSlum.Networking.Objects;
 using Fragment.NetSlum.Networking.Sessions;
 using Serilog;
 
-namespace Fragment.NetSlum.Networking.Packets.Request;
+namespace Fragment.NetSlum.Networking.Packets;
 
-public abstract class BaseRequest
+public abstract class BasePacket
 {
     public ILogger Log => Serilog.Log.ForContext(GetType());
 
-    public abstract ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request);
+
 
     /// <summary>
     /// Helper method to return a single message from a request handler
@@ -26,4 +28,16 @@ public abstract class BaseRequest
 
     protected static ValueTask<ICollection<FragmentMessage>> NoResponse() =>
         ValueTask.FromResult<ICollection<FragmentMessage>>(Array.Empty<FragmentMessage>());
+
+
+
+    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
+    public FragmentMessage Build(MessageType type, byte[] payload)
+    {
+        return new FragmentMessage
+        {
+            Data = payload,
+            MessageType = type,
+        };
+    }
 }

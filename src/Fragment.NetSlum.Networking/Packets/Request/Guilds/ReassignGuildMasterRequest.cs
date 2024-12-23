@@ -12,7 +12,7 @@ using Fragment.NetSlum.Persistence;
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.ReassignGuildMaster)]
-public class ReassignGuildMasterRequest : BaseRequest
+public class ReassignGuildMasterRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -21,7 +21,7 @@ public class ReassignGuildMasterRequest : BaseRequest
         _database = database;
     }
 
-    public override async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var newMasterId = BinaryPrimitives.ReadInt32BigEndian(request.Data.Span[..4]);
 

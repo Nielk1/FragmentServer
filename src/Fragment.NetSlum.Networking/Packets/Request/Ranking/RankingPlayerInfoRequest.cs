@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Fragment.NetSlum.Networking.Packets.Request.Ranking;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.RankPlayerInfo)]
-public class RankingPlayerInfoRequest : BaseRequest
+public class RankingPlayerInfoRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -23,7 +23,7 @@ public class RankingPlayerInfoRequest : BaseRequest
         _database = database;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var characterId = BinaryPrimitives.ReadInt32BigEndian(request.Data.Span[..4]);
 

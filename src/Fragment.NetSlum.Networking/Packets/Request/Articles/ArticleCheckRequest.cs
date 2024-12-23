@@ -11,7 +11,7 @@ using Fragment.NetSlum.Persistence;
 namespace Fragment.NetSlum.Networking.Packets.Request.Articles;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataNewCheckRequest)]
-public class ArticleCheckRequest : BaseRequest
+public class ArticleCheckRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -20,7 +20,7 @@ public class ArticleCheckRequest : BaseRequest
         _database = database;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var hasUnreadArticles = _database.WebNewsArticles
             .Any(a => !_database.WebNewsReadLogs.Any(

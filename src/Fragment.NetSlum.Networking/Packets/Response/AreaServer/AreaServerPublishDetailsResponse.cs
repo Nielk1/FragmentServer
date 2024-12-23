@@ -5,12 +5,12 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.AreaServer;
 
-public class AreaServerPublishDetailsResponse :BaseResponse
+public class AreaServerPublishDetailsResponse :BasePacket, IBaseResponse
 {
     public OpCodes PacketType { get; set; }
     public byte[] Data { get; set; } = [];
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         return new FragmentMessage
         {

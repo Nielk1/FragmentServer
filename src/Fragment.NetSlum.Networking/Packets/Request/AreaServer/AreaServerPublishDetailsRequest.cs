@@ -17,7 +17,7 @@ namespace Fragment.NetSlum.Networking.Packets.Request.AreaServer;
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.Data_AreaServerPublishDetails2Request)]
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.Data_AreaServerPublishDetails3Request)]
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.Data_AreaServerPublishDetails4Request)]
-public class AreaServerPublishDetailsRequest:BaseRequest
+public class AreaServerPublishDetailsRequest:BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
     private readonly ILogger<AreaServerPublishDetailsRequest> _logger;
@@ -28,9 +28,9 @@ public class AreaServerPublishDetailsRequest:BaseRequest
         _logger = logger;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
-        BaseResponse response;
+        IBaseResponse response;
 
         switch (request.DataPacketType)
         {

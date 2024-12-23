@@ -14,7 +14,7 @@ using Fragment.NetSlum.Persistence.Entities;
 namespace Fragment.NetSlum.Networking.Packets.Request.BBS;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataBbsPost)]
-public class CreateBBSPostRequest : BaseRequest
+public class CreateBBSPostRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -23,7 +23,7 @@ public class CreateBBSPostRequest : BaseRequest
         _database = database;
     }
 
-    public override async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var threadId = BinaryPrimitives.ReadUInt32BigEndian(request.Data.Span[..4]);
         var username = request.Data.Span[4..20].ToShiftJisString();

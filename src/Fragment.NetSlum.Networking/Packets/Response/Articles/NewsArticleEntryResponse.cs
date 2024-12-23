@@ -6,7 +6,7 @@ using Fragment.NetSlum.Networking.Constants;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Articles;
 
-public class NewsArticleEntryResponse : BaseResponse
+public class NewsArticleEntryResponse : BasePacket, IBaseResponse
 {
     public ushort articleId { get; set; }
     public string Title { get; set; } = "";
@@ -49,7 +49,7 @@ public class NewsArticleEntryResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var titleBytes = Title.PadRight(0x22, char.MinValue).ToShiftJis();
         var contentBytes = Content.PadRight(0x25a, char.MinValue).ToShiftJis();

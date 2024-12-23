@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Fragment.NetSlum.Networking.Packets.Request.BBS;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataBbsGetThreadDetails)]
-public class GetBBSThreadDetailsRequest : BaseRequest
+public class GetBBSThreadDetailsRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
 
@@ -22,7 +22,7 @@ public class GetBBSThreadDetailsRequest : BaseRequest
         _database = database;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         var threadId = BinaryPrimitives.ReadUInt32BigEndian(request.Data.Span[..4]);
 

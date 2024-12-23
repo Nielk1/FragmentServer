@@ -5,7 +5,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Guilds;
 
-public class GuildMenuListEntryResponse : BaseResponse
+public class GuildMenuListEntryResponse : BasePacket, IBaseResponse
 {
     private ushort _guildId;
     private string _guildName = null!;
@@ -25,7 +25,7 @@ public class GuildMenuListEntryResponse : BaseResponse
     }
 
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var nameBytes = _guildName.ToShiftJis();
 

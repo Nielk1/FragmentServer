@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace Fragment.NetSlum.Networking.Packets.Request.Login;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.AreaServerShutdownRequest)]
-public class AreaServerShutdownRequest : BaseRequest
+public class AreaServerShutdownRequest : BasePacket, IBaseRequest
 {
     private readonly ILogger<AreaServerShutdownRequest> _logger;
 
@@ -20,9 +20,9 @@ public class AreaServerShutdownRequest : BaseRequest
         _logger = logger;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
-        BaseResponse response = new AreaServerShutdownResponse();
+        IBaseResponse response = new AreaServerShutdownResponse();
 
         return SingleMessage(response.Build());
     }

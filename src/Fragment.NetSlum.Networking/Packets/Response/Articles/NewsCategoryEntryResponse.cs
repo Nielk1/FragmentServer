@@ -6,7 +6,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.Articles;
 
-public class NewsCategoryEntryResponse : BaseResponse
+public class NewsCategoryEntryResponse : BasePacket, IBaseResponse
 {
     private ushort categoryId { get; set; }
     private string categoryName { get; set; } = "";
@@ -25,7 +25,7 @@ public class NewsCategoryEntryResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var nameBytes = categoryName.ToShiftJis();
 

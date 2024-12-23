@@ -15,7 +15,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Fragment.NetSlum.Networking.Packets.Request.Guilds;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataViewGuildRequest)]
-public class ViewGuildInfoRequest : BaseRequest
+public class ViewGuildInfoRequest : BasePacket, IBaseRequest
 {
     private readonly FragmentContext _database;
     private readonly ChatLobbyStore _chatLobbyStore;
@@ -26,7 +26,7 @@ public class ViewGuildInfoRequest : BaseRequest
         _chatLobbyStore = chatLobbyStore;
     }
 
-    public override ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         ushort guildId = BinaryPrimitives.ReadUInt16BigEndian(request.Data.Span[..2]);
 

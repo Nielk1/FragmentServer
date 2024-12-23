@@ -6,7 +6,7 @@ using Fragment.NetSlum.Networking.Objects;
 
 namespace Fragment.NetSlum.Networking.Packets.Response.ChatLobby;
 
-public class LobbyChatroomCategoryEntryResponse : BaseResponse
+public class LobbyChatroomCategoryEntryResponse : BasePacket, IBaseResponse
 {
     private ushort _id;
     private string _name = "";
@@ -61,7 +61,7 @@ public class LobbyChatroomCategoryEntryResponse : BaseResponse
         return this;
     }
 
-    public override FragmentMessage Build()
+    public FragmentMessage Build()
     {
         var nameBytes = _name.ToShiftJis();
         var writer = new MemoryWriter(nameBytes.Length + sizeof(ushort) * 5);

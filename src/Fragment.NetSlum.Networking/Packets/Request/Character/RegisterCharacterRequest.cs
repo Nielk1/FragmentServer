@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 namespace Fragment.NetSlum.Networking.Packets.Request.Character;
 
 [FragmentPacket(ServerType.Lobby, MessageType.Data, OpCodes.DataRegisterCharRequest)]
-public class RegisterCharacterRequest : BaseRequest
+public class RegisterCharacterRequest : BasePacket, IBaseRequest
 {
     private readonly ILogger<RegisterCharacterRequest> _logger;
     private readonly ICommandBus _commandBus;
@@ -27,7 +27,7 @@ public class RegisterCharacterRequest : BaseRequest
         _commandBus = commandBus;
     }
 
-    public override async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
+    public async ValueTask<ICollection<FragmentMessage>> GetResponse(FragmentTcpSession session, FragmentMessage request)
     {
         session.CharacterInfo = CharacterInfo.FromBinaryData(request.Data.Span);
         _logger.LogInformation("Registering character:\n{CharInfo}", session.CharacterInfo.ToString());
